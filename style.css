@@ -1,3 +1,4 @@
+/* Reseteo básico */
 * {
     margin: 0;
     padding: 0;
@@ -5,140 +6,137 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-body {
-    background-color: #f1f5f9;
-    color: #334155;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+body, html {
+    height: 100%;
 }
 
-/* Barra de Autenticación */
-.auth-bar {
-    background-color: #0f172a;
-    color: white;
-    padding: 10px 20px;
+/* Fondo degradado inspirado en la imagen */
+.login-wrapper {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    font-size: 0.85rem;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #eea2e5, #b4c2e6, #a1eadf);
 }
 
-.badge {
-    padding: 3px 8px;
-    border-radius: 12px;
-    font-size: 0.75rem;
-    font-weight: bold;
-    margin-left: 8px;
-}
-.badge.guest { background-color: #64748b; }
-.badge.admin { background-color: #16a34a; }
-
-.btn-auth {
-    background-color: #0b5b9c;
-    color: white;
-    border: none;
-    padding: 6px 12px;
-    border-radius: 4px;
-    cursor: pointer;
+/* Contenedor central */
+.login-box {
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    padding: 40px 20px;
 }
 
-/* Ocultar acciones de Administrador por defecto (Modo Invitado) */
-.admin-only {
-    display: none;
+.user-icon {
+    width: 60px;
+    height: 60px;
     margin-bottom: 10px;
 }
 
-/* Cuando es Admin, se muestran los campos para subir/guardar */
-body.is-admin .admin-only {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
+.login-box h2 {
+    color: white;
+    font-weight: 300;
+    letter-spacing: 2px;
+    font-size: 28px;
+    margin-bottom: 40px;
 }
 
-/* Header */
-header {
-    background-color: #0b5b9c;
+/* Campos de entrada de texto */
+.input-group {
+    position: relative;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #5a759b;
+}
+
+.input-group .icon {
+    color: #5a759b;
+    margin-right: 15px;
+    font-size: 18px;
+}
+
+.input-group input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 10px 0;
+    color: white;
+    font-size: 16px;
+    outline: none;
+}
+
+.input-group input::placeholder {
+    color: #5a759b;
+}
+
+/* Opciones de recordar / olvidar */
+.options-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    font-size: 13px;
+    color: #5a759b;
+}
+
+.options-group a {
+    color: #5a759b;
+    text-decoration: none;
+}
+
+.options-group a:hover {
     color: white;
 }
 
-.header-container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 15px 20px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
+/* Botón Principal (Admin) */
+.btn-primary {
+    width: 100%;
+    padding: 15px;
+    background-color: #3b608e;
+    color: white;
+    border: none;
+    font-weight: bold;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: background 0.3s ease;
 }
 
-.logo {
-    width: 65px;
-    height: auto;
-    background-color: white;
-    border-radius: 6px;
-    padding: 3px;
+.btn-primary:hover {
+    background-color: #294466;
 }
 
-nav { background-color: #084373; }
-nav ul { list-style: none; display: flex; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-.nav-btn {
-    background: none; border: none; color: #cbd5e1; padding: 12px 24px;
-    font-size: 1rem; font-weight: 600; cursor: pointer;
+/* Separador */
+.divider {
+    margin: 25px 0;
+    color: #5a759b;
+    position: relative;
 }
-.nav-btn.active { color: white; background-color: #0b5b9c; border-bottom: 3px solid #38bdf8; }
-
-main { flex: 1; max-width: 1100px; width: 100%; margin: 25px auto; padding: 0 20px; }
-.course-section { display: none; }
-.course-section.active-section { display: block; }
-.course-header { text-align: center; margin-bottom: 20px; }
-.course-header h2 { color: #0b5b9c; }
-
-/* Tarjetas y Acordeón */
-.unit-accordion {
-    background: white; border-radius: 8px; margin-bottom: 15px; border: 1px solid #e2e8f0; overflow: hidden;
+.divider::before, .divider::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 40%;
+    height: 1px;
+    background-color: #5a759b;
 }
-.unit-header {
-    background-color: #f8fafc; padding: 14px 20px; font-weight: 700; color: #0b5b9c; cursor: pointer;
-    border-left: 5px solid #0b5b9c;
-}
+.divider::before { left: 0; }
+.divider::after { right: 0; }
 
-.weeks-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 15px; padding: 18px;
-}
-
-.week-card {
-    background-color: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 12px;
-    display: flex; flex-direction: column; justify-content: space-between;
+/* Botón Secundario (Invitado) */
+.btn-secondary {
+    width: 100%;
+    padding: 15px;
+    background-color: transparent;
+    color: #3b608e;
+    border: 2px solid #3b608e;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-.week-card h4 { color: #0b5b9c; margin-bottom: 4px; }
-.topic-title { font-size: 0.85rem; color: #475569; margin-bottom: 12px; font-weight: 500; }
-
-/* Botones */
-.btn-save {
-    background-color: #16a34a; color: white; border: none; padding: 6px; border-radius: 4px;
-    cursor: pointer; font-size: 0.8rem; font-weight: bold;
+.btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border-color: white;
 }
-.btn-download {
-    display: block; text-align: center; background-color: #0284c7; color: white;
-    text-decoration: none; padding: 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold;
-}
-.btn-download.disabled {
-    background-color: #cbd5e1; color: #94a3b8; pointer-events: none;
-}
-
-/* Modal */
-.modal {
-    display: none; position: fixed; top:0; left:0; width:100%; height:100%;
-    background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 1000;
-}
-.modal-content {
-    background: white; padding: 25px; border-radius: 8px; width: 320px; display: flex;
-    flex-direction: column; gap: 10px; position: relative;
-}
-.close-btn { position: absolute; top: 10px; right: 15px; cursor: pointer; font-size: 1.2rem; }
-.modal-content input { padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
-.btn-primary { background-color: #0b5b9c; color: white; border: none; padding: 8px; border-radius: 4px; cursor: pointer; }
-.error-msg { color: #dc2626; font-size: 0.8rem; }
-
-footer { background-color: #0f172a; color: #94a3b8; text-align: center; padding: 15px; margin-top: auto; }
