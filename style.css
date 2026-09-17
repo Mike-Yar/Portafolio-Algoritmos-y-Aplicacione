@@ -1,4 +1,6 @@
-/* Reseteo básico */
+/* =========================================
+   1. RESETEO BÁSICO Y FUENTES GLOBALES
+   ========================================= */
 * {
     margin: 0;
     padding: 0;
@@ -8,10 +10,14 @@
 
 body, html {
     height: 100%;
+    background-color: #f1f5f9;
+    color: #334155;
 }
 
-/* Fondo degradado inspirado en la imagen */
-.login-wrapper {
+/* =========================================
+   2. PANTALLA DE LOGIN (MODERNA)
+   ========================================= */
+.login-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,48 +25,50 @@ body, html {
     background: linear-gradient(to bottom, #eea2e5, #b4c2e6, #a1eadf);
 }
 
-/* Contenedor central */
 .login-box {
     width: 100%;
     max-width: 400px;
     text-align: center;
-    padding: 40px 20px;
+    padding: 40px 25px;
+    background: transparent;
 }
 
-.user-icon {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 10px;
-}
-
-.login-box h2 {
-    color: white;
-    font-weight: 300;
-    letter-spacing: 2px;
-    font-size: 28px;
+.login-header {
     margin-bottom: 40px;
 }
 
-/* Campos de entrada de texto */
-.input-group {
-    position: relative;
-    margin-bottom: 25px;
-    display: flex;
-    align-items: center;
-    border-bottom: 2px solid #5a759b;
+.login-icon {
+    font-size: 55px;
+    color: white;
+    margin-bottom: 15px;
 }
 
-.input-group .icon {
+.login-header h2 {
+    color: white;
+    font-weight: 300;
+    letter-spacing: 3px;
+    font-size: 26px;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.6);
+    padding-bottom: 8px;
+}
+
+.input-group i {
     color: #5a759b;
     margin-right: 15px;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 .input-group input {
     width: 100%;
     background: transparent;
     border: none;
-    padding: 10px 0;
     color: white;
     font-size: 16px;
     outline: none;
@@ -70,26 +78,16 @@ body, html {
     color: #5a759b;
 }
 
-/* Opciones de recordar / olvidar */
-.options-group {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 30px;
-    font-size: 13px;
-    color: #5a759b;
+.error-msg {
+    color: #d8000c;
+    margin-bottom: 15px;
+    font-size: 14px;
+    min-height: 20px;
+    font-weight: bold;
 }
 
-.options-group a {
-    color: #5a759b;
-    text-decoration: none;
-}
-
-.options-group a:hover {
-    color: white;
-}
-
-/* Botón Principal (Admin) */
-.btn-primary {
+/* Botones de Login */
+.btn-login {
     width: 100%;
     padding: 15px;
     background-color: #3b608e;
@@ -99,18 +97,25 @@ body, html {
     letter-spacing: 2px;
     cursor: pointer;
     transition: background 0.3s ease;
+    border-radius: 4px;
 }
 
-.btn-primary:hover {
+.btn-login:hover {
     background-color: #294466;
 }
 
-/* Separador */
 .divider {
     margin: 25px 0;
     color: #5a759b;
     position: relative;
+    font-size: 14px;
 }
+
+.divider span {
+    background: transparent;
+    padding: 0 15px;
+}
+
 .divider::before, .divider::after {
     content: "";
     position: absolute;
@@ -119,11 +124,11 @@ body, html {
     height: 1px;
     background-color: #5a759b;
 }
+
 .divider::before { left: 0; }
 .divider::after { right: 0; }
 
-/* Botón Secundario (Invitado) */
-.btn-secondary {
+.btn-guest {
     width: 100%;
     padding: 15px;
     background-color: transparent;
@@ -133,11 +138,304 @@ body, html {
     letter-spacing: 1px;
     cursor: pointer;
     transition: all 0.3s ease;
+    border-radius: 4px;
 }
 
-.btn-secondary:hover {
+.btn-guest:hover {
     background-color: rgba(255, 255, 255, 0.2);
     color: white;
     border-color: white;
 }
 
+/* =========================================
+   3. ESTRUCTURA DEL PORTAFOLIO (UPLA)
+   ========================================= */
+#portfolio-content {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Barra de Autenticación Superior */
+.auth-bar {
+    background-color: #0f172a;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+}
+
+.badge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    margin-left: 8px;
+}
+.badge.guest { background-color: #64748b; }
+.badge.admin { background-color: #16a34a; }
+
+.btn-logout {
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.btn-logout:hover { background-color: #dc2626; }
+
+/* Encabezado */
+header {
+    background-color: #0b5b9c; /* Azul UPLA */
+    color: white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.header-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    width: 75px;
+    height: auto;
+    background-color: white;
+    border-radius: 8px;
+    padding: 4px;
+}
+
+.header-text h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.header-text h2 {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: #dbeaff;
+    margin-top: 4px;
+}
+
+/* Navegación por pestañas */
+nav {
+    background-color: #084373;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.nav-btn {
+    background: none;
+    border: none;
+    color: #cbd5e1;
+    padding: 15px 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-bottom: 4px solid transparent;
+}
+
+.nav-btn:hover {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.nav-btn.active {
+    color: white;
+    background-color: #0b5b9c;
+    border-bottom: 4px solid #38bdf8;
+}
+
+/* =========================================
+   4. CONTENIDO DE LOS CURSOS Y ACORDEONES
+   ========================================= */
+main {
+    flex: 1;
+    max-width: 1100px;
+    width: 100%;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.course-section {
+    display: none; /* Se oculta por defecto */
+}
+
+.course-section.active-section {
+    display: block; /* Muestra el curso activo */
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.course-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.course-header h2 {
+    color: #0b5b9c;
+    font-size: 2.2rem;
+    margin-bottom: 8px;
+}
+
+.course-header p {
+    color: #64748b;
+    font-size: 1rem;
+}
+
+/* Estilo de los Acordeones (Unidades) */
+.units-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.unit-accordion {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+}
+
+.unit-header {
+    background-color: #f8fafc;
+    padding: 16px 20px;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #0b5b9c;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s;
+    border-left: 5px solid #0b5b9c;
+}
+
+.unit-header:hover {
+    background-color: #f1f5f9;
+}
+
+/* =========================================
+   5. TARJETAS DE LAS SEMANAS Y BOTONES
+   ========================================= */
+.weeks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 18px;
+    padding: 20px;
+    background-color: #ffffff;
+}
+
+.week-card {
+    background-color: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.week-card h4 {
+    color: #0b5b9c;
+    font-size: 1.1rem;
+    margin-bottom: 6px;
+}
+
+.topic-title {
+    font-size: 0.9rem;
+    color: #475569;
+    margin-bottom: 18px;
+    flex-grow: 1; /* Empuja los botones hacia abajo */
+}
+
+/* Lógica de ocultar botones para invitados */
+.admin-controls {
+    display: none; /* Oculto por defecto (Invitado) */
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+/* Al iniciar sesión como Administrador (agregamos clase al body en JS) */
+body.is-admin .admin-controls {
+    display: flex;
+}
+
+/* Botones y campos de archivo */
+.admin-controls input[type="file"] {
+    font-size: 0.8rem;
+    width: 100%;
+    padding: 6px;
+    border: 1px dashed #94a3b8;
+    border-radius: 4px;
+    background-color: white;
+}
+
+.btn-save {
+    background-color: #16a34a; /* Verde */
+    color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn-save:hover {
+    background-color: #15803d;
+}
+
+.btn-download {
+    display: block;
+    text-align: center;
+    background-color: #0284c7; /* Azul claro */
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn-download:hover {
+    background-color: #0369a1;
+}
+
+.btn-download.disabled {
+    background-color: #cbd5e1;
+    color: #94a3b8;
+    pointer-events: none;
+}
+
+/* =========================================
+   6. FOOTER
+   ========================================= */
+footer {
+    background-color: #0f172a;
+    color: #94a3b8;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 0.9rem;
+    margin-top: auto;
+}
