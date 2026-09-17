@@ -5,329 +5,306 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portafolio Académico | Miguel Portocarrero</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Iconos de FontAwesome (opcional, para el candado y usuario del login) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Barra Superior de Autenticación -->
-    <div class="auth-bar">
-        <div class="user-info">
-            <span>Rol actual: <strong id="current-role">Invitado</strong></span>
-            <span id="user-badge" class="badge guest">Solo Lectura</span>
-        </div>
-        <button id="auth-btn" class="btn-auth" onclick="toggleLoginModal()">Iniciar Sesión (Admin)</button>
-    </div>
 
-    <!-- Modal de Login -->
-    <div id="login-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="toggleLoginModal()">&times;</span>
-            <h3>Acceso de Administrador</h3>
-            <p>Ingresa tus credenciales para subir y gestionar archivos.</p>
-            <input type="text" id="username" placeholder="Usuario (ej. miguel)">
-            <input type="password" id="password" placeholder="Contraseña">
-            <button class="btn-primary" onclick="login()">Ingresar</button>
+    <!-- ==================== PANTALLA DE LOGIN INICIAL ==================== -->
+    <div id="login-screen" class="login-container">
+        <div class="login-box">
+            <div class="login-header">
+                <i class="fa-regular fa-user login-icon"></i>
+                <h2>User Login</h2>
+            </div>
+            
+            <div class="input-group">
+                <i class="fa-solid fa-envelope"></i>
+                <input type="text" id="username" placeholder="Usuario (Admin: miguel)">
+            </div>
+            
+            <div class="input-group">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" id="password" placeholder="Contraseña (Admin: 123456)">
+            </div>
+
             <p id="login-error" class="error-msg"></p>
+
+            <button class="btn-login" onclick="loginAdmin()">LOGIN ADMINISTRADOR</button>
+            
+            <div class="divider"><span>O</span></div>
+            
+            <button class="btn-guest" onclick="loginGuest()">Ingresar como Invitado</button>
         </div>
     </div>
 
-    <!-- Encabezado Principal -->
-    <header>
-        <div class="header-container">
-            <img src="image_401b6a.png" alt="Logo Universidad Peruana Los Andes" class="logo">
-            <div class="header-text">
-                <h1>Universidad Peruana Los Andes</h1>
-                <h2>Estudiante: Miguel Portocarrero</h2>
+    <!-- ==================== CONTENIDO DEL PORTAFOLIO (Oculto al inicio) ==================== -->
+    <div id="portfolio-content" style="display: none;">
+        
+        <!-- Barra de Estado Superior -->
+        <div class="auth-bar">
+            <div class="user-info">
+                <span>Sesión iniciada como: <strong id="current-role"></strong></span>
+                <span id="user-badge" class="badge"></span>
             </div>
+            <button class="btn-logout" onclick="logout()">Cerrar Sesión</button>
         </div>
 
-        <nav>
-            <ul>
-                <li><button class="nav-btn active" onclick="switchCourse('algoritmos', this)">Algoritmos</button></li>
-                <li><button class="nav-btn" onclick="switchCourse('desarrollo', this)">Desarrollo de Aplicaciones</button></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <!-- ==================== CURSO 1: ALGORITMOS ==================== -->
-        <section id="algoritmos" class="course-section active-section">
-            <div class="course-header">
-                <h2>Curso: Algoritmos</h2>
-                <p>Silabo y entregables semanales por unidad académica.</p>
+        <!-- Encabezado Principal -->
+        <header>
+            <div class="header-container">
+                <!-- Asegúrate de tener image_401b6a.png en la misma carpeta -->
+                <img src="image_401b6a.png" alt="Logo UPLA" class="logo" onerror="this.src='https://via.placeholder.com/70?text=UPLA';">
+                <div class="header-text">
+                    <h1>Universidad Peruana Los Andes</h1>
+                    <h2>Estudiante: Miguel Portocarrero</h2>
+                </div>
             </div>
 
-            <div class="units-container">
-                <!-- UNIDAD I -->
-                <details class="unit-accordion" open>
-                    <summary class="unit-header">Unidad I: Fundamentos de Algoritmos y Estructuras Secuenciales</summary>
-                    <div class="weeks-grid">
-                        <div class="week-card">
-                            <h4>Semana 1</h4>
-                            <p class="topic-title">Introducción a la Algoritmia, variables y tipos de datos</p>
-                            <div class="admin-only">
-                                <input type="file" id="file-algo-w1">
-                                <button class="btn-save" onclick="saveAndPrepareDownload('file-algo-w1', 'dl-algo-w1')">💾 Guardar Archivo</button>
+            <nav>
+                <ul>
+                    <li><button class="nav-btn active" onclick="switchCourse('algoritmos', this)">Algoritmos</button></li>
+                    <li><button class="nav-btn" onclick="switchCourse('desarrollo', this)">Desarrollo de Aplicaciones</button></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <!-- CURSO 1: ALGORITMOS -->
+            <section id="algoritmos" class="course-section active-section">
+                <div class="course-header">
+                    <h2>Curso: Algoritmos</h2>
+                    <p>Silabo y entregables semanales por unidad académica.</p>
+                </div>
+
+                <div class="units-container">
+                    <!-- UNIDAD I -->
+                    <details class="unit-accordion" open>
+                        <summary class="unit-header">Unidad I: Fundamentos de Algoritmos y Estructuras Secuenciales</summary>
+                        <div class="weeks-grid">
+                            <!-- Semana 1 -->
+                            <div class="week-card">
+                                <h4>Semana 1</h4>
+                                <p class="topic-title">Introducción a la Algoritmia, variables y tipos de datos</p>
+                                <div class="admin-controls">
+                                    <input type="file" id="file-algo-w1">
+                                    <button class="btn-save" onclick="saveAndPrepareDownload('file-algo-w1', 'dl-algo-w1')">💾 Guardar</button>
+                                </div>
+                                <a id="dl-algo-w1" class="btn-download disabled" download>📥 Descargar Entregable</a>
                             </div>
-                            <a id="dl-algo-w1" class="btn-download disabled" download>📥 Descargar Entregable</a>
-                        </div>
 
-                        <div class="week-card">
-                            <h4>Semana 2</h4>
-                            <p class="topic-title">Operadores aritméticos, relacionales y lógicos</p>
-                            <div class="admin-only">
-                                <input type="file" id="file-algo-w2">
-                                <button class="btn-save" onclick="saveAndPrepareDownload('file-algo-w2', 'dl-algo-w2')">💾 Guardar Archivo</button>
+                            <!-- Semana 2 -->
+                            <div class="week-card">
+                                <h4>Semana 2</h4>
+                                <p class="topic-title">Operadores aritméticos, relacionales y lógicos</p>
+                                <div class="admin-controls">
+                                    <input type="file" id="file-algo-w2">
+                                    <button class="btn-save" onclick="saveAndPrepareDownload('file-algo-w2', 'dl-algo-w2')">💾 Guardar</button>
+                                </div>
+                                <a id="dl-algo-w2" class="btn-download disabled" download>📥 Descargar Entregable</a>
                             </div>
-                            <a id="dl-algo-w2" class="btn-download disabled" download>📥 Descargar Entregable</a>
-                        </div>
 
-                        <div class="week-card">
-                            <h4>Semana 3</h4>
-                            <p class="topic-title">Estructuras selectivas simples y dobles (If-Else)</p>
-                            <div class="admin-only">
-                                <input type="file" id="file-algo-w3">
-                                <button class="btn-save" onclick="saveAndPrepareDownload('file-algo-w3', 'dl-algo-w3')">💾 Guardar Archivo</button>
+                            <!-- Semana 3 -->
+                            <div class="week-card">
+                                <h4>Semana 3</h4>
+                                <p class="topic-title">Estructuras selectivas simples y dobles (If-Else)</p>
+                                <div class="admin-controls">
+                                    <input type="file" id="file-algo-w3">
+                                    <button class="btn-save" onclick="saveAndPrepareDownload('file-algo-w3', 'dl-algo-w3')">💾 Guardar</button>
+                                </div>
+                                <a id="dl-algo-w3" class="btn-download disabled" download>📥 Descargar Entregable</a>
                             </div>
-                            <a id="dl-algo-w3" class="btn-download disabled" download>📥 Descargar Entregable</a>
-                        </div>
 
-                        <div class="week-card">
-                            <h4>Semana 4</h4>
-                            <p class="topic-title">Estructuras selectivas múltiples (Switch / Según)</p>
-                            <div class="admin-only">
-                                <input type="file" id="file-algo-w4">
-                                <button class="btn-save" onclick="saveAndPrepareDownload('file-algo-w4', 'dl-algo-w4')">💾 Guardar Archivo</button>
+                            <!-- Semana 4 -->
+                            <div class="week-card">
+                                <h4>Semana 4</h4>
+                                <p class="topic-title">Estructuras selectivas múltiples (Switch / Según)</p>
+                                <div class="admin-controls">
+                                    <input type="file" id="file-algo-w4">
+                                    <button class="btn-save" onclick="saveAndPrepareDownload('file-algo-w4', 'dl-algo-w4')">💾 Guardar</button>
+                                </div>
+                                <a id="dl-algo-w4" class="btn-download disabled" download>📥 Descargar Entregable</a>
                             </div>
-                            <a id="dl-algo-w4" class="btn-download disabled" download>📥 Descargar Entregable</a>
                         </div>
-                    </div>
-                </details>
+                    </details>
 
-                <!-- UNIDAD II -->
-                <details class="unit-accordion">
-                    <summary class="unit-header">Unidad II: Estructuras Repetitivas y Arreglos Unidimensionales</summary>
-                    <div class="weeks-grid">
-                        <div class="week-card">
-                            <h4>Semana 5</h4>
-                            <p class="topic-title">Estructuras repetitivas: Bucle Mientras (While)</p>
-                            <div class="admin-only">
-                                <input type="file" id="file-algo-w5">
-                                <button class="btn-save" onclick="saveAndPrepareDownload('file-algo-w5', 'dl-algo-w5')">💾 Guardar Archivo</button>
+                    <!-- UNIDAD II -->
+                    <details class="unit-accordion">
+                        <summary class="unit-header">Unidad II: Estructuras Repetitivas y Arreglos Unidimensionales</summary>
+                        <div class="weeks-grid">
+                            <!-- Semana 5 -->
+                            <div class="week-card">
+                                <h4>Semana 5</h4>
+                                <p class="topic-title">Estructuras repetitivas: Bucle Mientras (While)</p>
+                                <div class="admin-controls">
+                                    <input type="file" id="file-algo-w5">
+                                    <button class="btn-save" onclick="saveAndPrepareDownload('file-algo-w5', 'dl-algo-w5')">💾 Guardar</button>
+                                </div>
+                                <a id="dl-algo-w5" class="btn-download disabled" download>📥 Descargar Entregable</a>
                             </div>
-                            <a id="dl-algo-w5" class="btn-download disabled" download>📥 Descargar Entregable</a>
-                        </div>
-
-                        <div class="week-card">
-                            <h4>Semana 6</h4>
-                            <p class="topic-title">Estructuras repetitivas: Para (For) y Hacer-Mientras</p>
-                            <div class="admin-only">
-                                <input type="file" id="file-algo-w6">
-                                <button class="btn-save" onclick="saveAndPrepareDownload('file-algo-w6', 'dl-algo-w6')">💾 Guardar Archivo</button>
+                            <!-- (Puedes copiar y pegar las tarjetas para la semana 6, 7 y 8 cambiando los IDs) -->
+                            <div class="week-card">
+                                <h4>Semana 6</h4>
+                                <p class="topic-title">Estructuras repetitivas: Para (For) y Hacer-Mientras</p>
+                                <div class="admin-controls">
+                                    <input type="file" id="file-algo-w6">
+                                    <button class="btn-save" onclick="saveAndPrepareDownload('file-algo-w6', 'dl-algo-w6')">💾 Guardar</button>
+                                </div>
+                                <a id="dl-algo-w6" class="btn-download disabled" download>📥 Descargar Entregable</a>
                             </div>
-                            <a id="dl-algo-w6" class="btn-download disabled" download>📥 Descargar Entregable</a>
-                        </div>
-
-                        <div class="week-card">
-                            <h4>Semana 7</h4>
-                            <p class="topic-title">Introducción a Arreglos Unidimensionales (Vectores)</p>
-                            <div class="admin-only">
-                                <input type="file" id="file-algo-w7">
-                                <button class="btn-save" onclick="saveAndPrepareDownload('file-algo-w7', 'dl-algo-w7')">💾 Guardar Archivo</button>
+                             <div class="week-card">
+                                <h4>Semana 7</h4>
+                                <p class="topic-title">Introducción a Arreglos Unidimensionales (Vectores)</p>
+                                <div class="admin-controls">
+                                    <input type="file" id="file-algo-w7">
+                                    <button class="btn-save" onclick="saveAndPrepareDownload('file-algo-w7', 'dl-algo-w7')">💾 Guardar</button>
+                                </div>
+                                <a id="dl-algo-w7" class="btn-download disabled" download>📥 Descargar Entregable</a>
                             </div>
-                            <a id="dl-algo-w7" class="btn-download disabled" download>📥 Descargar Entregable</a>
-                        </div>
-
-                        <div class="week-card">
-                            <h4>Semana 8</h4>
-                            <p class="topic-title">Operaciones con Vectores (Inserción, Modificación y Recorrido)</p>
-                            <div class="admin-only">
-                                <input type="file" id="file-algo-w8">
-                                <button class="btn-save" onclick="saveAndPrepareDownload('file-algo-w8', 'dl-algo-w8')">💾 Guardar Archivo</button>
+                             <div class="week-card">
+                                <h4>Semana 8</h4>
+                                <p class="topic-title">Operaciones con Vectores (Inserción, Modificación)</p>
+                                <div class="admin-controls">
+                                    <input type="file" id="file-algo-w8">
+                                    <button class="btn-save" onclick="saveAndPrepareDownload('file-algo-w8', 'dl-algo-w8')">💾 Guardar</button>
+                                </div>
+                                <a id="dl-algo-w8" class="btn-download disabled" download>📥 Descargar Entregable</a>
                             </div>
-                            <a id="dl-algo-w8" class="btn-download disabled" download>📥 Descargar Entregable</a>
                         </div>
-                    </div>
-                </details>
+                    </details>
+                    
+                    <!-- UNIDAD III y IV irían aquí siguiendo el mismo patrón... -->
+                </div>
+            </section>
 
-                <!-- UNIDAD III -->
-                <details class="unit-accordion">
-                    <summary class="unit-header">Unidad III: Arreglos Multidimensionales y Funciones</summary>
-                    <div class="weeks-grid">
-                        <div class="week-card">
-                            <h4>Semana 9</h4>
-                            <p class="topic-title">Arreglos Bidimensionales (Matrices)</p>
-                            <div class="admin-only">
-                                <input type="file" id="file-algo-w9">
-                                <button class="btn-save" onclick="saveAndPrepareDownload('file-algo-w9', 'dl-algo-w9')">💾 Guardar Archivo</button>
-                            </div>
-                            <a id="dl-algo-w9" class="btn-download disabled" download>📥 Descargar Entregable</a>
-                        </div>
+            <!-- CURSO 2: DESARROLLO DE APLICACIONES -->
+            <section id="desarrollo" class="course-section">
+                <div class="course-header">
+                    <h2>Curso: Desarrollo de Aplicaciones</h2>
+                    <p>Silabo y entregables semanales por unidad académica.</p>
+                </div>
+                <p style="text-align: center; color: #666; margin-top: 20px;">Las unidades se agregan siguiendo la misma estructura que Algoritmos.</p>
+            </section>
+        </main>
 
-                        <div class="week-card">
-                            <h4>Semana 10</h4>
-                            <p class="topic-title">Operaciones y Recorridos de Matrices</p>
-                            <div class="admin-only">
-                                <input type="file" id="file-algo-w10">
-                                <button class="btn-save" onclick="saveAndPrepareDownload('file-algo-w10', 'dl-algo-w10')">💾 Guardar Archivo</button>
-                            </div>
-                            <a id="dl-algo-w10" class="btn-download disabled" download>📥 Descargar Entregable</a>
-                        </div>
+        <footer>
+            <p>&copy; 2026 Miguel Portocarrero | Universidad Peruana Los Andes</p>
+        </footer>
+    </div>
 
-                        <div class="week-card">
-                            <h4>Semana 11</h4>
-                            <p class="topic-title">Modularización: Funciones y Procedimientos</p>
-                            <div class="admin-only">
-                                <input type="file" id="file-algo-w11">
-                                <button class="btn-save" onclick="saveAndPrepareDownload('file-algo-w11', 'dl-algo-w11')">💾 Guardar Archivo</button>
-                            </div>
-                            <a id="dl-algo-w11" class="btn-download disabled" download>📥 Descargar Entregable</a>
-                        </div>
-
-                        <div class="week-card">
-                            <h4>Semana 12</h4>
-                            <p class="topic-title">Paso de parámetros por valor y por referencia</p>
-                            <div class="admin-only">
-                                <input type="file" id="file-algo-w12">
-                                <button class="btn-save" onclick="saveAndPrepareDownload('file-algo-w12', 'dl-algo-w12')">💾 Guardar Archivo</button>
-                            </div>
-                            <a id="dl-algo-w12" class="btn-download disabled" download>📥 Descargar Entregable</a>
-                        </div>
-                    </div>
-                </details>
-
-                <!-- UNIDAD IV -->
-                <details class="unit-accordion">
-                    <summary class="unit-header">Unidad IV: Ordenamiento, Búsqueda y Proyecto Final</summary>
-                    <div class="weeks-grid">
-                        <div class="week-card">
-                            <h4>Semana 13</h4>
-                            <p class="topic-title">Algoritmos de Ordenamiento (Burbuja, Inserción)</p>
-                            <div class="admin-only">
-                                <input type="file" id="file-algo-w13">
-                                <button class="btn-save" onclick="saveAndPrepareDownload('file-algo-w13', 'dl-algo-w13')">💾 Guardar Archivo</button>
-                            </div>
-                            <a id="dl-algo-w13" class="btn-download disabled" download>📥 Descargar Entregable</a>
-                        </div>
-
-                        <div class="week-card">
-                            <h4>Semana 14</h4>
-                            <p class="topic-title">Algoritmos de Búsqueda (Secuencial y Binaria)</p>
-                            <div class="admin-only">
-                                <input type="file" id="file-algo-w14">
-                                <button class="btn-save" onclick="saveAndPrepareDownload('file-algo-w14', 'dl-algo-w14')">💾 Guardar Archivo</button>
-                            </div>
-                            <a id="dl-algo-w14" class="btn-download disabled" download>📥 Descargar Entregable</a>
-                        </div>
-
-                        <div class="week-card">
-                            <h4>Semana 15</h4>
-                            <p class="topic-title">Integración de Algoritmos y Archivos</p>
-                            <div class="admin-only">
-                                <input type="file" id="file-algo-w15">
-                                <button class="btn-save" onclick="saveAndPrepareDownload('file-algo-w15', 'dl-algo-w15')">💾 Guardar Archivo</button>
-                            </div>
-                            <a id="dl-algo-w15" class="btn-download disabled" download>📥 Descargar Entregable</a>
-                        </div>
-
-                        <div class="week-card">
-                            <h4>Semana 16</h4>
-                            <p class="topic-title">Presentación y Evaluación del Proyecto Final</p>
-                            <div class="admin-only">
-                                <input type="file" id="file-algo-w16">
-                                <button class="btn-save" onclick="saveAndPrepareDownload('file-algo-w16', 'dl-algo-w16')">💾 Guardar Archivo</button>
-                            </div>
-                            <a id="dl-algo-w16" class="btn-download disabled" download>📥 Descargar Entregable</a>
-                        </div>
-                    </div>
-                </details>
-            </div>
-        </section>
-
-        <!-- ==================== CURSO 2: DESARROLLO DE APLICACIONES ==================== -->
-        <section id="desarrollo" class="course-section">
-            <div class="course-header">
-                <h2>Curso: Desarrollo de Aplicaciones</h2>
-                <p>Silabo y entregables semanales por unidad académica.</p>
-            </div>
-            <p style="text-align: center; color: #666;">Sección en construcción. Muestra la misma estructura de semanas.</p>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2026 Miguel Portocarrero | Universidad Peruana Los Andes</p>
-    </footer>
-
-    <!-- Lógica de Autenticación, Gestión de Roles y Descargas -->
+    <!-- Scripts de Lógica -->
     <script>
-        let isAdmin = false;
-
-        function toggleLoginModal() {
-            const modal = document.getElementById('login-modal');
-            modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
-        }
-
-        function login() {
+        // Función de Login para Administrador
+        function loginAdmin() {
             const user = document.getElementById('username').value.trim();
             const pass = document.getElementById('password').value.trim();
             const error = document.getElementById('login-error');
 
-            // Credenciales de Administrador (puedes personalizarlas)
             if (user.toLowerCase() === 'miguel' && pass === '123456') {
-                isAdmin = true;
-                document.getElementById('current-role').textContent = 'Administrador (Miguel)';
-                const badge = document.getElementById('user-badge');
-                badge.textContent = 'Modo Edición';
-                badge.className = 'badge admin';
-
-                document.getElementById('auth-btn').textContent = 'Cerrar Sesión';
-                document.getElementById('auth-btn').onclick = logout;
-
                 document.body.classList.add('is-admin');
-                toggleLoginModal();
+                document.getElementById('current-role').textContent = 'Administrador (Miguel)';
+                document.getElementById('user-badge').textContent = 'Modo Edición';
+                document.getElementById('user-badge').className = 'badge admin';
+                
+                showPortfolio();
                 error.textContent = '';
             } else {
                 error.textContent = 'Usuario o contraseña incorrectos.';
             }
         }
 
-        function logout() {
-            isAdmin = false;
-            document.getElementById('current-role').textContent = 'Invitado';
-            const badge = document.getElementById('user-badge');
-            badge.textContent = 'Solo Lectura';
-            badge.className = 'badge guest';
-
-            document.getElementById('auth-btn').textContent = 'Iniciar Sesión (Admin)';
-            document.getElementById('auth-btn').onclick = toggleLoginModal;
-
+        // Función de Login para Invitado
+        function loginGuest() {
             document.body.classList.remove('is-admin');
+            document.getElementById('current-role').textContent = 'Invitado';
+            document.getElementById('user-badge').textContent = 'Solo Lectura';
+            document.getElementById('user-badge').className = 'badge guest';
+            
+            showPortfolio();
         }
 
-        function switchCourse(courseId, button) {
-            document.querySelectorAll('.course-section').forEach(sec => sec.classList.remove('active-section'));
-            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById(courseId).classList.add('active-section');
-            button.classList.add('active');
+        // Mostrar el portafolio y ocultar el login
+        function showPortfolio() {
+            document.getElementById('login-screen').style.display = 'nonePara transformar el inicio de sesión que tienes actualmente en tu proyecto (como se ve en la esquina superior izquierda de la **image_707762.png**) a un diseño moderno a pantalla completa con fondo degradado (como el de la **image_707aa8.png**), necesitas separar el área de "Login" del área de "Contenido Principal" (tu plataforma de la universidad).
+
+Aquí tienes el código HTML y CSS paso a paso para crear esa pantalla inicial. He incluido tanto el formulario para el **Administrador** como un botón secundario para acceder como **Invitado**.
+
+### 1. Estructura HTML (`index.html`)
+
+Lo ideal es que esta pantalla de login cubra toda la página y, una vez que el usuario ingrese, se oculte mediante JavaScript para mostrar el contenido de los cursos.
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso - Universidad</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- PANTALLA DE LOGIN -->
+    <div id="login-screen" class="login-wrapper">
+        <div class="login-box">
+            <!-- Icono de Usuario (SVG similar a la imagen) -->
+            <svg class="user-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            
+            <h2>INICIO DE SESIÓN</h2>
+            
+            <!-- Formulario de Administrador -->
+            <form id="adminForm">
+                <div class="input-group">
+                    <span class="icon">✉</span>
+                    <input type="text" id="adminUser" placeholder="Usuario / Email ID" required>
+                </div>
+                
+                <div class="input-group">
+                    <span class="icon">🔒</span>
+                    <input type="password" id="adminPass" placeholder="Contraseña" required>
+                </div>
+
+                <div class="options-group">
+                    <label><input type="checkbox"> Recuérdame</label>
+                    <a href="#">¿Olvidaste tu contraseña?</a>
+                </div>
+                
+                <button type="button" class="btn-primary" onclick="ingresarComoAdmin()">LOGIN (ADMIN)</button>
+            </form>
+
+            <div class="divider">
+                <span>o</span>
+            </div>
+
+            <!-- Acceso para Invitados -->
+            <button type="button" class="btn-secondary" onclick="ingresarComoInvitado()">INGRESAR COMO INVITADO</button>
+        </div>
+    </div>
+
+    <!-- CONTENIDO PRINCIPAL (Tu portal actual) -->
+    <!-- Inicialmente oculto (display: none) -->
+    <div id="main-content" style="display: none;">
+        <!-- Aquí va todo tu código actual (El header de la UPLA, el banner azul, la lista de algoritmos, etc.) -->
+        <h1>Bienvenido al sistema</h1>
+        <p>Has ingresado exitosamente.</p>
+    </div>
+
+    <script>
+        // Lógica simple en JavaScript para ocultar el login y mostrar la página
+        function ingresarComoAdmin() {
+            // Aquí iría tu validación de usuario/contraseña
+            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+            alert("Bienvenido, Administrador");
         }
 
-        // Permite generar el enlace de descarga directamente en el navegador
-        function saveAndPrepareDownload(fileInputId, downloadBtnId) {
-            const fileInput = document.getElementById(fileInputId);
-            const downloadBtn = document.getElementById(downloadBtnId);
-
-            if (fileInput.files.length === 0) {
-                alert('Por favor selecciona un archivo primero.');
-                return;
-            }
-
-            const file = fileInput.files[0];
-            const fileUrl = URL.createObjectURL(file);
-
-            downloadBtn.href = fileUrl;
-            downloadBtn.download = file.name;
-            downloadBtn.classList.remove('disabled');
-            downloadBtn.textContent = '📥 Descargar ' + file.name;
-
-            alert('¡Archivo "' + file.name + '" guardado en el sistema! El botón de descarga ahora está disponible.');
+        function ingresarComoInvitado() {
+            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+            alert("Has ingresado en modo solo lectura (Invitado)");
         }
     </script>
 </body>
