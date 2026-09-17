@@ -1,0 +1,213 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f1f5f9;
+    color: #334155;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Encabezado */
+header {
+    background-color: #0b5b9c;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.header-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    width: 70px;
+    height: auto;
+    background-color: white;
+    border-radius: 8px;
+    padding: 4px;
+}
+
+.header-text h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.header-text h2 {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: #dbeaff;
+    margin-top: 4px;
+}
+
+/* Menú Navegación Cursos */
+nav {
+    background-color: #084373;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.nav-btn {
+    background: none;
+    border: none;
+    color: #cbd5e1;
+    padding: 15px 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-bottom: 4px solid transparent;
+}
+
+.nav-btn:hover {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.nav-btn.active {
+    color: white;
+    background-color: #0b5b9c;
+    border-bottom: 4px solid #38bdf8;
+}
+
+/* Contenido Principal */
+main {
+    flex: 1;
+    max-width: 1100px;
+    width: 100%;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.course-section {
+    display: none;
+}
+
+.course-section.active-section {
+    display: block;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.course-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.course-header h2 {
+    color: #0b5b9c;
+    font-size: 2rem;
+    margin-bottom: 6px;
+}
+
+.course-header p {
+    color: #64748b;
+}
+
+/* Acordeón de Unidades */
+.units-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.unit-accordion {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+}
+
+.unit-header {
+    background-color: #f8fafc;
+    padding: 16px 20px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #0b5b9c;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s;
+    border-left: 5px solid #0b5b9c;
+}
+
+.unit-header:hover {
+    background-color: #f1f5f9;
+}
+
+/* Rejilla de Semanas (4 por Unidad) */
+.weeks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+    padding: 20px;
+    background-color: #ffffff;
+}
+
+.week-card {
+    background-color: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.week-card h4 {
+    color: #1e293b;
+    font-size: 1.05rem;
+    margin-bottom: 4px;
+}
+
+.week-card p {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin-bottom: 12px;
+}
+
+.week-card input[type="file"] {
+    font-size: 0.75rem;
+    margin-bottom: 8px;
+    width: 100%;
+}
+
+.file-status {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    font-weight: 600;
+    word-break: break-all;
+}
+
+.file-status.loaded {
+    color: #16a34a;
+}
+
+/* Pie de Página */
+footer {
+    background-color: #0f172a;
+    color: #94a3b8;
+    text-align: center;
+    padding: 18px 0;
+    font-size: 0.9rem;
+    margin-top: auto;
+}
