@@ -1,1 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio Académico | Miguel Portocarrero</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Encabezado Principal -->
+    <header>
+        <div class="header-container">
+            <img src="image_401b6a.png" alt="Logo Universidad Peruana Los Andes" class="logo">
+            <div class="header-text">
+                <h1>Universidad Peruana Los Andes</h1>
+                <h2>Estudiante: Miguel Portocarrero</h2>
+            </div>
+        </div>
 
+        <!-- Selección de Cursos -->
+        <nav>
+            <ul>
+                <li><button class="nav-btn active" onclick="switchCourse('algoritmos', this)">Algoritmos</button></li>
+                <li><button class="nav-btn" onclick="switchCourse('desarrollo', this)">Desarrollo de Aplicaciones</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- ==================== CURSO 1: ALGORITMOS ==================== -->
+        <section id="algoritmos" class="course-section active-section">
+            <div class="course-header">
+                <h2>Curso: Algoritmos</h2>
+                <p>Selecciona una unidad para desplegar sus 4 semanas y subir tus archivos de evaluación.</p>
+            </div>
+
+            <div class="units-container">
+                <!-- UNIDAD I -->
+                <details class="unit-accordion" open>
+                    <summary class="unit-header">Unidad I (Semanas 1 - 4)</summary>
+                    <div class="weeks-grid">
+                        <div class="week-card">
+                            <h4>Semana 1</h4>
+                            <p>Entregable de la sesión</p>
+                            <input type="file" onchange="updateFileStatus(this, 'algo-u1-w1')">
+                            <span id="algo-u1-w1" class="file-status">Sin archivo</span>
+                        </div>
+                        <div class="week-card">
+                            <h4>Semana 2</h4>
+                            <p>Entregable de la sesión</p>
+                            <input type="file" onchange="updateFileStatus(this, 'algo-u1-w2')">
+                            <span id="algo-u1-w2" class="file-status">Sin archivo</span>
+                        </div>
+                        <div class="week-card">
+                            <h4>Semana 3</h4>
+                            <p>Entregable de la sesión</p>
+                            <input type="file" onchange="updateFileStatus(this, 'algo-u1-w3')">
+                            <span id="algo-u1-w3" class="file-status">Sin archivo</span>
+                        </div>
+                        <div class="week-card">
+                            <h4>Semana 4</h4>
+                            <p>Evaluación / Práctica Calificada 1</p>
+                            <input type="file" onchange="updateFileStatus(this, 'algo-u1-w4')">
+                            <span id="algo-u1-w4" class="file-status">Sin archivo</span>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- UNIDAD II -->
+                <details class="unit-accordion">
+                    <summary class="unit-header">Unidad II (Semanas 5 - 8)</summary>
+                    <div class="weeks-grid">
+                        <div class="week-card">
+                            <h4>Semana 5</h4>
+                            <p>Entregable de la sesión</p>
+                            <input type="file" onchange="updateFileStatus(this, 'algo-u2-w5')">
+                            <span id="algo-u2-w5" class="file-status">Sin archivo</span>
+                        </div>
+                        <div class="week-card">
+                            <h4>Semana 6</h4>
+                            <p>Entregable de la sesión</p>
+                            <input type="file" onchange="updateFileStatus(this, 'algo-u2-w6')">
+                            <span id="algo-u2-w6" class="file-status">Sin archivo</span>
+                        </div>
+                        <div class="week-card">
+                            <h4>Semana 7</h4>
+                            <p>Entregable de la sesión</p>
+                            <input type="file" onchange="updateFileStatus(this, 'algo-u2-w7')">
+                            <span id="algo-u2-w7" class="file-status">Sin archivo</span>
+                        </div>
+                        <div class="week-card">
+                            <h4>Semana 8</h4>
+                            <p>Examen Parcial / Consolidado 1</p>
+                            <input type="file" onchange="updateFileStatus(this, 'algo-u2-w8')">
+                            <span id="algo-u2-w8" class="file-status">Sin archivo</span>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- UNIDAD III -->
+                <details class="unit-accordion">
+                    <summary class="unit-header">Unidad III (Semanas 9 - 12)</summary>
+                    <div class="weeks-grid">
+                        <div class="week-card">
+                            <h4>Semana 9</h4>
+                            <p>Entregable de la sesión</p>
+                            <input type="file" onchange="updateFileStatus(this, 'algo-u3-w9')">
+                            <span id="algo-u3-w9" class="file-status">Sin archivo</span>
+                        </div>
+                        <div class="week-card">
+                            <h4>Semana 10</h4>
+                            <p>Entregable de la sesión</p>
+                            <input type="file" onchange="updateFileStatus(this, 'algo-u3-w10')">
+                            <span id="algo-u3-w10" class="file-status">Sin archivo</span>
+                        </div>
+                        <div class="week-card">
+                            <h4>Semana 11</h4>
+                            <p>Entregable de la sesión</p>
+                            <input type="file" onchange="updateFileStatus(this, 'algo-u3-w11')">
+                            <span id="algo-u3-w11" class="file-status">Sin archivo</span>
+                        </div>
+                        <div class="week-card">
+                            <h4>Semana 12</h4>
+                            <p>Evaluación / Práctica Calificada 2</p>
+                            <input type="file" onchange="updateFileStatus(this, 'algo-u3-w12')">
+                            <span id="algo-u3-w12" class="file-status">Sin archivo</span>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- UNIDAD IV -->
+                <details class="unit-accordion">
+                    <summary class="unit-header">Unidad IV (Semanas 13 - 16)</summary>
+                    <div class="weeks-grid">
+                        <div class="week-card">
+                            <h4>Semana 13</h4>
+                            <p>Entregable de la sesión</p>
+                            <input type="file" onchange="updateFileStatus(this, 'algo-u4-w13')">
+                            <span id="algo-u4-w13" class="file-status">Sin archivo</span>
+                        </div>
+                        <div class="week-card">
+                            <h4>Semana 14</h4>
+                            <p>Entregable de la sesión</p>
+                            <input type="file" onchange="updateFileStatus(this, 'algo-u4-w14')">
+                            <span id="algo-u4-w14" class="file-status">Sin archivo</span>
+                        </div>
+                        <div class="week-card">
+                            <h4>Semana 15</h4>
+                            <p>Presentación de Proyecto Final</p>
+                            <input type="file" onchange="updateFileStatus(this, 'algo-u4-w15')">
+                            <span id="algo-u4-w15" class="file-status">Sin archivo</span>
+                        </div>
+                        <div class="week-card">
+                            <h4>Semana 16</h4>
+                            <p>Examen Final / Consolidado 2</p>
+                            <input type="file" onchange="updateFileStatus(this, 'algo-u4-w16')">
+                            <span id="algo-u4-w16" class="file-status">Sin archivo</span>
+                        </div>
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <!-- ==================== CURSO 2: DESARROLLO DE APLICACIONES ==================== -->
+        <section id="desarrollo" class="course-section">
+            <div class="course-header">
+                <h2>Curso: Desarrollo de Aplicaciones</h2>
+                <p>Selecciona una unidad para desplegar sus 4 semanas y subir tus archivos de evaluación.</p>
+            </div>
+
+            <div class="units-container">
+                <!-- UNIDAD I -->
+                <details class="unit-accordion" open>
+                    <summary class="unit-header">Unidad I (Semanas 1 - 4)</summary>
+                    <div class="weeks-grid">
+                        <div class="week-card">
+                            <h4>Semana 1</h4>
+                            <p>Entregable de la sesión</p>
+                            <input type="file" onchange="updateFileStatus(this, 'dev-u1-w1')">
+                            <span id="dev-u1-w1" class="file-status">Sin archivo</span>
+                        </div>
+                        <div class="week-card">
+                            <h4>Semana 2</h4>
+                            <p>Entregable de la sesión</p>
+                            <input type="file" onchange="updateFileStatus(this, 'dev-u1-w2')">
+                            <span id="dev-u1-w2" class="file-status">Sin archivo</span>
+                        </div>
+                        <div class="week-card">
+                            <h4>Semana 3</h4>
+                            <p>Entregable de la sesión</p>
+                            <input type="file" onchange="updateFileStatus(this, 'dev-u1-w3')">
+                            <span id="dev-u1-w3" class="file-status">Sin archivo</span>
+                        </div>
+                        <div class="week-card">
+                            <h4>Semana 4</h4>
+                            <p>Evaluación / Práctica Calificada 1</p>
+                            <input type="file" onchange="updateFileStatus(this, 'dev-u1-w4')">
+                            <span id="dev-u1-w4" class="file-status">Sin archivo</span>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- UNIDAD II -->
+                <details class="unit-accordion">
+                    <summary class="unit-header">Unidad II (Semanas 5 - 8)</summary>
+                    <div class="weeks-grid">
+                        <div class="week-card">
+                            <h4>Semana 5</h4>
+                            <p>Entregable de la sesión</p>
+                            <input type="file" onchange="updateFileStatus(this, 'dev-u2-w5')">
+                            <span id="dev-u2-w5" class="file-status">Sin archivo</span>
+                        </div>
+                        <div class="week-card">
+                            <h4>Semana 6</h4>
+                            <p>Entregable de la sesión</p>
+                            <input type="file" onchange="updateFileStatus(this, 'dev-u2-w6')">
+                            <span id="dev-u2-w6" class="file-status">Sin archivo</span>
+                        </div>
+                        <div class="week-card">
+                            <h4>Semana 7</h4>
+                            <p>Entregable de la sesión</p>
+                            <input type="file" onchange="updateFileStatus(this, 'dev-u2-w7')">
+                            <span id="dev-u2-w7" class="file-status">Sin archivo</span>
+                        </div>
+                        <div class="week-card">
+                            <h4>Semana 8</h4>
+                            <p>Examen Parcial / Consolidado 1</p>
+                            <input type="file" onchange="updateFileStatus(this, 'dev-u2-w8')">
+                            <span id="dev-u2-w8" class="file-status">Sin archivo</span>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- UNIDAD III -->
+                <details class="unit-accordion">
+                    <summary class="unit-header">Unidad III (Semanas 9 - 12)</summary>
+                    <div class="weeks-grid">
+                        <div class="week-card">
+                            <h4>Semana 9</h4>
+                            <p>Entregable de la sesión</p>
+                            <input type="file" onchange="updateFileStatus(this, 'dev-u3-w9')">
+                            <span id="dev-u3-w9" class="file-status">Sin archivo</span>
+                        </div>
+                        <div class="week-card">
+                            <h4>Semana 10</h4>
+                            <p>Entregable de la sesión</p>
+                            <input type="file" onchange="updateFileStatus(this, 'dev-u3-w10')">
+                            <span id="dev-u3-w10" class="file-status">Sin archivo</span>
+                        </div>
+                        <div class="week-card">
+                            <h4>Semana 11</h4>
+                            <p>Entregable de la sesión</p>
+                            <input type="file" onchange="updateFileStatus(this, 'dev-u3-w11')">
+                            <span id="dev-u3-w11" class="file-status">Sin archivo</span>
+                        </div>
+                        <div class="week-card">
+                            <h4>Semana 12</h4>
+                            <p>Evaluación / Práctica Calificada 2</p>
+                            <input type="file" onchange="updateFileStatus(this, 'dev-u3-w12')">
+                            <span id="dev-u3-w12" class="file-status">Sin archivo</span>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- UNIDAD IV -->
+                <details class="unit-accordion">
+                    <summary class="unit-header">Unidad IV (Semanas 13 - 16)</summary>
+                    <div class="weeks-grid">
+                        <div class="week-card">
+                            <h4>Semana 13</h4>
+                            <p>Entregable de la sesión</p>
+                            <input type="file" onchange="updateFileStatus(this, 'dev-u4-w13')">
+                            <span id="dev-u4-w13" class="file-status">Sin archivo</span>
+                        </div>
+                        <div class="week-card">
+                            <h4>Semana 14</h4>
+                            <p>Entregable de la sesión</p>
+                            <input type="file" onchange="updateFileStatus(this, 'dev-u4-w14')">
+                            <span id="dev-u4-w14" class="file-status">Sin archivo</span>
+                        </div>
+                        <div class="week-card">
+                            <h4>Semana 15</h4>
+                            <p>Presentación de Proyecto Final</p>
+                            <input type="file" onchange="updateFileStatus(this, 'dev-u4-w15')">
+                            <span id="dev-u4-w15" class="file-status">Sin archivo</span>
+                        </div>
+                        <div class="week-card">
+                            <h4>Semana 16</h4>
+                            <p>Examen Final / Consolidado 2</p>
+                            <input type="file" onchange="updateFileStatus(this, 'dev-u4-w16')">
+                            <span id="dev-u4-w16" class="file-status">Sin archivo</span>
+                        </div>
+                    </div>
+                </details>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Miguel Portocarrero | Universidad Peruana Los Andes</p>
+    </footer>
+
+    <!-- Lógica JavaScript en línea -->
+    <script>
+        function switchCourse(courseId, button) {
+            // Ocultar todas las secciones de cursos
+            document.querySelectorAll('.course-section').forEach(sec => {
+                sec.classList.remove('active-section');
+            });
+
+            // Desactivar todos los botones de navegación
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Activar la sección y botón elegidos
+            document.getElementById(courseId).classList.add('active-section');
+            button.classList.add('active');
+        }
+
+        function updateFileStatus(input, statusId) {
+            const statusLabel = document.getElementById(statusId);
+            if (input.files && input.files.length > 0) {
+                statusLabel.textContent = "✔ " + input.files[0].name;
+                statusLabel.className = "file-status loaded";
+            } else {
+                statusLabel.textContent = "Sin archivo";
+                statusLabel.className = "file-status";
+            }
+        }
+    </script>
+</body>
+</html>
